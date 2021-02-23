@@ -4,13 +4,16 @@ orbs:
 
 jobs:
   build:
-    docker:
-      - image: circleci/ruby:2.5.3-stretch-node
+    # docker:
+    #   - image: circleci/ruby:2.5.3-stretch-node
     executor: ruby/default
     steps:
       - checkout
       - run: gem install bundler:2.1.4
       - run:
-          name: Which bundler?
+          name: which bundler?
           command: bundle -v
       - ruby/bundle-install
+      - run: 
+          name: DB setup
+          command: rails db:{create,migrate}
