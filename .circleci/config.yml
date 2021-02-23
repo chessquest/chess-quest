@@ -6,6 +6,9 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.5.3-stretch-node
+      - image: postgres:9.5
+        environment:
+          POSTGRES_DB: chess-quest_test
     executor: ruby/default
     steps:
       - checkout
