@@ -9,10 +9,7 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-      - run:
-          name: Install bundle
-          command: bundle install
-      - run:
+      - run: gem install bundler:2.1.4
           name: Which bundler?
           command: bundle -v
       - ruby/bundle-install
