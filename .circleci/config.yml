@@ -8,9 +8,8 @@ jobs:
       - image: circleci/ruby:2.5.3-stretch-node
       - image: postgres:9.5
         environment:
-          POSTGRES_USER: chess-quest
+          POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: chess-quest_test
-          POSTGRES_PASSWORD: ""
     executor: ruby/default
     steps:
       - checkout
