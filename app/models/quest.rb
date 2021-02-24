@@ -3,4 +3,6 @@ class Quest < ApplicationRecord
 
 	validates_presence_of :user_id
 	validates_presence_of :status
+
+	enum [:in_progress, :completed]
 end
