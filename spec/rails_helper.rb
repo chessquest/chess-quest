@@ -15,6 +15,13 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+def stub_get_json(url, filename)
+  json_response = File.read("./spec/fixtures/#{filename}")
+  stub_request(:get, url).
+    to_return(status: 200, body: json_response)
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
