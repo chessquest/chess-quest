@@ -29,6 +29,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'rack-cors'
 gem 'fast_jsonapi'
 gem 'faraday'
+gem 'rails-erd'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +49,7 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
   gem 'shoulda-matchers'
+  gem 'webmock'
 end
 
 
