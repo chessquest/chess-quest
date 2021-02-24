@@ -15,4 +15,3 @@ RSpec.describe Game, type: :model do
 	describe 'class methods' do
 	end
 end
-

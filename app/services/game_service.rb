@@ -1,7 +1,7 @@
-class ChessQuestService
+class GameService
 	class << self
 
-		def get_fen(params)
+		def get_game_data(params)
 			response = conn.get("game") do |req|
 				req.params[:find] = params
 			end

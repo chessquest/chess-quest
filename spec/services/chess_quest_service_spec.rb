@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ChessQuestService do
+describe GameService do
 	describe "class methods" do
 		describe "::get_fen" do
 			it 'gets a game ' do
@@ -8,7 +8,7 @@ describe ChessQuestService do
 				stub_request(:get, "https://https://chess-com-api.herokuapp.com/api/v1/game?find=magnus").
 					to_return(status: 200, body: json_response)
 
-				game = ChessQuestService.get_fen("magnus")
+				game = GameService.get_game_data("magnus")
 
 				expect(game).to be_a Hash
 				expect(game).to have_key(:data)
