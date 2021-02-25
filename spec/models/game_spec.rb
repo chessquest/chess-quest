@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Game, type: :model do
 	describe 'validations' do
 		it { should validate_presence_of :status }
+		it { should validate_presence_of :fen }
 	end
 
 	describe 'relationships' do
@@ -15,4 +16,3 @@ RSpec.describe Game, type: :model do
 	describe 'class methods' do
 	end
 end
-
