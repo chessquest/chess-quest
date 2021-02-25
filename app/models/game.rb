@@ -3,5 +3,5 @@ class Game < ApplicationRecord
 
   validates_presence_of :status
 
-  enum [:in_progress, :won, :lost]
+  enum status: [:in_progress, :won, :lost]
 end
