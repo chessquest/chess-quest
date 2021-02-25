@@ -1,4 +1,4 @@
-# Endpoints
+<h1>:chess_pawn: Endpoints :chess_pawn: </h1>
 <hr>
 <h1><span style="color:red">Quests</span></h1>
 <hr>
