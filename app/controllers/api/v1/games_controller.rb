@@ -4,7 +4,7 @@ class Api::V1::GamesController < ApplicationController
 		quest = Quest.find(params[:quest_id])
 		user_id = params[:user_id]
 		@fen = ChessQuestFacade.get_fen(params[:name])
-		game = Game.create!(fen: @fen, quest: quest)
+		game = Game.create!(starting_fen: @fen, quest: quest)
 
 		render json: GameSerializer.new(game), status: :created
 	end
