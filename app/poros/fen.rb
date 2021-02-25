@@ -12,20 +12,21 @@ class Fen
     @full_moves = string_fragments[:full_moves]
   end
 
-  def to_starting_position
-    set_starting_board
-    @board +  " w KQkq - 0 1"
+
+  def to_starting_position_string
+    get_starting_board +  " w KQkq - 0 1"
   end
 
   private
 
-  def set_starting_board
+  def get_starting_board
     default_board_wrapper = "rnbqkbnr/pppppppp/8/8/8/8/"
     default_white_string = "PPPPPPPP/RNBQKBNR"
     new_board = ""
     consecutive_numbers = 0
+    current_board =  @board.reverse.reverse # this is to make your life easier
     default_white_string.split('').each do |char|
-      result = @board.slice!(char)
+      result = current_board.slice!(char)
 
       if result && consecutive_numbers == 0
         new_board += result
@@ -38,11 +39,10 @@ class Fen
 
     end
 
-    @board = default_board_wrapper + new_board
+    default_board_wrapper + new_board
   end
 
   def split(fen_string)
-    #example: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
     string_pieces = fen_string.split(" ")
   {
       board: string_pieces[0],

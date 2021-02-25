@@ -18,8 +18,8 @@ describe Fen do
   end
 
   describe "instance methods" do
-    it "to_starting_position" do
-      expect(@incomplete_fen.to_starting_position).to eq("rnbqkbnr/pppppppp/8/8/8/8/PPPPPP2/RNBQKB1R w KQkq - 0 1")
+    it "to_starting_position_string" do
+      expect(@incomplete_fen.to_starting_position_string).to eq("rnbqkbnr/pppppppp/8/8/8/8/PPPPPP2/RNBQKB1R w KQkq - 0 1")
     end
   end
 end
