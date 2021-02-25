@@ -40,10 +40,8 @@ RSpec.describe 'Games API' do
         headers = {'CONTENT_TYPE' => 'application/json'}
         post '/api/v1/games', headers: headers, params: JSON.generate(game_params)
   
-        require 'pry'; binding.pry
         expect(response).to_not be_successful
         expect(response.status).to eq(400)
-
       
       end
     end
