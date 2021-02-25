@@ -13,7 +13,6 @@ Rails.application.routes.draw do
 			  get '/:id/pieces', to: 'stats#pieces'
 			  get '/:id/total_quests', to: 'stats#total_quests'
 		  end
-
 	  end
   end
 end
