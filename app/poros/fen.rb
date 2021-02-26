@@ -27,37 +27,35 @@ class Fen
     NON_WHITE_BOARD + white_layout(current_board)
   end
 
-  # def white_layout(current_board)
-  #   new_board = ""
-  #   consecutive_numbers = 0
-  #   FULL_WHITE_BOARD.split('').each do |char|
-  #     result = current_board.slice!(char)
+  def white_layout(current_board)
+    new_board = ""
+    empty_squares = nil
+    FULL_WHITE_BOARD.split('').each do |char|
+      piece = current_board.slice!(char)
 
-  #     if result && consecutive_numbers == 0
-  #       new_board += result
-  #     elsif result
-  #       new_board += consecutive_numbers.to_s + result
-  #       consecutive_numbers = 0
-  #     else
-  #       consecutive_numbers += 1
-  #     end
-  #   end
-  #   new_board
-  # end
-
-  def white_layout(current_board, white_default = FULL_WHITE_BOARD, number = nil, new_board = '')
-    if white_default == ''
-      new_board
-    else
-      char = white_default.slice!(white_default.first)
-      result = current_board.slice!(char)
-      if result
-        white_layout(current_board, white_default, nil, new_board += number.to_s + result)
+      if piece
+        new_board += empty_squares.to_s + piece
+        empty_squares = nil
       else
-        white_layout(current_board, white_default, number = number.to_i + 1, new_board)
+        empty_squares = empty_squares.to_i + 1
       end
     end
+    new_board
   end
+
+  # def white_layout(current_board, white_default = FULL_WHITE_BOARD, number = nil, new_board = '')
+  #   if white_default == ''
+  #     new_board
+  #   else
+  #     char = white_default.slice!(white_default.first)
+  #     result = current_board.slice!(char)
+  #     if result
+  #       white_layout(current_board, white_default, nil, new_board += number.to_s + result)
+  #     else
+  #       white_layout(current_board, white_default, number = number.to_i + 1, new_board)
+  #     end
+  #   end
+  # end
 
   def split(fen_string)
     string_pieces = fen_string.split(" ")
