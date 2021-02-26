@@ -1,6 +1,9 @@
 class Fen
 
   attr_reader :board, :to_move, :castling, :en_passant, :half_moves, :full_moves
+  
+  NON_WHITE_BOARD = "rnbqkbnr/pppppppp/8/8/8/8/"
+  FULL_WHITE_BOARD = "PPPPPPPP/RNBQKBNR"
 
   def initialize(fen_string)
     string_fragments = split(fen_string)
@@ -20,26 +23,40 @@ class Fen
   private
 
   def get_starting_board
-    default_board_wrapper = "rnbqkbnr/pppppppp/8/8/8/8/"
-    default_white_string = "PPPPPPPP/RNBQKBNR"
-    new_board = ""
-    consecutive_numbers = 0
     current_board =  @board.reverse.reverse # this is to make your life easier
-    default_white_string.split('').each do |char|
+    NON_WHITE_BOARD + white_layout(current_board)
+  end
+
+  # def white_layout(current_board)
+  #   new_board = ""
+  #   consecutive_numbers = 0
+  #   FULL_WHITE_BOARD.split('').each do |char|
+  #     result = current_board.slice!(char)
+
+  #     if result && consecutive_numbers == 0
+  #       new_board += result
+  #     elsif result
+  #       new_board += consecutive_numbers.to_s + result
+  #       consecutive_numbers = 0
+  #     else
+  #       consecutive_numbers += 1
+  #     end
+  #   end
+  #   new_board
+  # end
+
+  def white_layout(current_board, white_default = FULL_WHITE_BOARD, number = nil, new_board = '')
+    if white_default == ''
+      new_board
+    else
+      char = white_default.slice!(white_default.first)
       result = current_board.slice!(char)
-
-      if result && consecutive_numbers == 0
-        new_board += result
-      elsif result
-        new_board += consecutive_numbers.to_s + result
-        consecutive_numbers = 0
+      if result
+        white_layout(current_board, white_default, nil, new_board += number.to_s + result)
       else
-        consecutive_numbers += 1
+        white_layout(current_board, white_default, number = number.to_i + 1, new_board)
       end
-
     end
-
-    default_board_wrapper + new_board
   end
 
   def split(fen_string)
