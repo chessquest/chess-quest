@@ -23,7 +23,7 @@ class Fen
   private
 
   def get_starting_board
-    current_board =  @board.reverse.reverse # this is to make your life easier
+    current_board =  @board[0..-1] # this is to make your life easier
     NON_WHITE_BOARD + white_layout(current_board)
   end
 
