@@ -123,7 +123,9 @@ Response:
       "id": "1",
       "type": "game",
       "attributes": {
-        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
+        "status": "in progress"
         "user_id": "12",
         "quest_id": "1"
       }
@@ -132,7 +134,9 @@ Response:
       "id": "2",
       "type": "game",
       "attributes": {
-        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
+        "status": "in progress"
         "user_id": "12",
         "quest_id": "1"
       }
@@ -141,7 +145,9 @@ Response:
       "id": "3",
       "type": "game",
       "attributes": {
-        "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
+        "status": "in progress"
         "user_id": "12",
         "quest_id": "1"
       }
@@ -165,7 +171,9 @@ Response:
     "id": "1",
     "type": "game",
     "attributes": {
-      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
+      "status": "in progress"
       "user_id": "12",
       "quest_id": "1"
     }
@@ -187,7 +195,8 @@ Response:
     "id": "1",
     "type": "game",
     "attributes": {
-      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
       "user_id": "12",
       "quest_id": "1"
     }
@@ -209,7 +218,8 @@ Response:
     "id": "1",
     "type": "game",
     "attributes": {
-      "fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "status": "won"
       "user_id": "12",
       "quest_id": "1"
     }
@@ -222,7 +232,7 @@ Response:
 
 ### User Stats across all games / quests
 
-Path: `GET https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/stats`
+Path: `GET https://chess-quest-api.herokuapp.com/api/v1/stats/users/:user_id`
 
 Params: `:user_id`
 
@@ -242,11 +252,11 @@ Response:
 }
 ```
 
-### User Stats across single quest
+### Stats for a single quest
 
-Path: `GET https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quest/:quest_id/stats`
+Path: `GET https://chess-quest-api.herokuapp.com/api/v1/stats/quest/:quest_id
 
-Params: `:user_id, :quest_id`
+Params: `:quest_id`
 
 Response:
 
@@ -266,9 +276,9 @@ Response:
 
 ### User Stats across single game
 
-Path: `GET https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quest/:quest_id/games/games/:game_id/stats`
+Path: `GET https://chess-quest-api.herokuapp.com/api/v1/stats/games/:game_id`
 
-Params: `:user_id, :quest_id, :game_id`
+Params: `:game_id`
 
 Response:
 
