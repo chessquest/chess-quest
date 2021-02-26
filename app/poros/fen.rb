@@ -3,7 +3,7 @@ class Fen
   attr_reader :board, :to_move, :castling, :en_passant, :half_moves, :full_moves
   
   NON_WHITE_BOARD = "rnbqkbnr/pppppppp/8/8/8/8/"
-  FULL_WHITE_BOARD = "PPPPPPPP/RNBQKBNR"
+  FULL_WHITE_BOARD = "PPPPPPPP/RNBQKBNR".split('')
 
   def initialize(fen_string)
     string_fragments = split(fen_string)
@@ -28,34 +28,18 @@ class Fen
   end
 
   def white_layout(current_board)
-    new_board = ""
     empty_squares = nil
-    FULL_WHITE_BOARD.split('').each do |char|
-      piece = current_board.slice!(char)
-
-      if piece
-        new_board += empty_squares.to_s + piece
+    FULL_WHITE_BOARD.map do |char|
+      if piece = current_board.slice!(char)
+        placement = empty_squares.to_s + piece
         empty_squares = nil
+        placement
       else
         empty_squares = empty_squares.to_i + 1
+        ''
       end
-    end
-    new_board
+    end * '' + empty_squares.to_s
   end
-
-  # def white_layout(current_board, white_default = FULL_WHITE_BOARD, number = nil, new_board = '')
-  #   if white_default == ''
-  #     new_board
-  #   else
-  #     char = white_default.slice!(white_default.first)
-  #     result = current_board.slice!(char)
-  #     if result
-  #       white_layout(current_board, white_default, nil, new_board += number.to_s + result)
-  #     else
-  #       white_layout(current_board, white_default, number = number.to_i + 1, new_board)
-  #     end
-  #   end
-  # end
 
   def split(fen_string)
     string_pieces = fen_string.split(" ")
