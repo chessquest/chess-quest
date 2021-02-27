@@ -18,4 +18,10 @@ class Api::V1::QuestsController < ApplicationController
 		render json: QuestSerializer.new(quest)
 	end
 
+	def update
+		quest = Quest.find(params[:id])
+		quest.update!(status: params[:status])
+		render json: QuestSerializer.new(quest)
+	end
+
 end
