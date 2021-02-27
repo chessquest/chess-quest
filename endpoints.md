@@ -89,7 +89,7 @@ Response:
 
 ### Quest Update
 
-Path: `PATCH https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests`
+Path: `PATCH https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests/:quest_id`
 
 Params: `:user_id`
 
