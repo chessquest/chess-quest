@@ -5,6 +5,5 @@ class ChessQuestFacade
 			chess_game = GameService.get_game_data(params)
 			chess_game[:data][:attributes][:fen]
 		end	
-					
 	end
 end

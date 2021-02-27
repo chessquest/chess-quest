@@ -11,7 +11,7 @@ class GameService
 		private
 
 		def conn
-			Faraday.new("https://https://chess-com-api.herokuapp.com/api/v1/")
+			Faraday.new("https://chess-com-api.herokuapp.com/api/v1/")
 		end
 
 		def parse(response)

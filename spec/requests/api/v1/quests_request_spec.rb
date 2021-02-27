@@ -4,9 +4,10 @@ RSpec.describe 'Games API' do
   describe 'games create' do  
     describe 'happy path' do
       it 'creates a quest' do
-        quest_params = {user_id: 2}
+        user_id = 2
+        quest_params = {user_id: user_id}
 				headers = {'CONTENT_TYPE' => 'application/json'}
-				post '/api/v1/quests', headers: headers, params: JSON.generate(quest_params)
+				post "/api/v1/users/#{user_id}/quests", headers: headers, params: JSON.generate(quest_params)
 
         created_quest = Quest.last
         expect(response).to be_successful

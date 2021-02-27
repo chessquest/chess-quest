@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api do
 	  namespace :v1 do
-
-			
+			resources :users, only: :show do
+				resources :quests, only: %i[index create]
+				resources :games, only: %i[index create]
+			end
 			
 		  namespace :users do
-				resources :quests, except: [:destroy]
-				resources :games, except: [:destroy]
 			  get '/:id/win_streak', to: 'stats#win_streak'
 			  get '/:id/win_loss', to: 'stats#win_loss'
 			  get '/:id/pieces', to: 'stats#pieces'
