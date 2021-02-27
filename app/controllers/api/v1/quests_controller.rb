@@ -7,8 +7,15 @@ class Api::V1::QuestsController < ApplicationController
 	end
 
 	def index
-		quests = Quest.where(user_id: params[:user_id]).where(status: params[:status])
-
+		params[:status] ?
+			quests = Quest.where(user_id: params[:user_id]).where(status: params[:status]) :
+			quests = Quest.where(user_id: params[:user_id])
 		render json: QuestSerializer.new(quests)
 	end
+
+	def show
+		quest = Quest.find(params[:id])
+		render json: QuestSerializer.new(quest)
+	end
+
 end

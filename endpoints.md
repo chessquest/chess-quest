@@ -9,7 +9,7 @@ Path: `GET https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests`
 
 Params: `:user_id`
 
-Optional Params: `'status'`
+Optional Params: `:status`
 
 Response:
 
@@ -127,7 +127,7 @@ Response:
       "attributes": {
         "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
         "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
-        "status": "in progress"
+        "status": "in progress",
         "user_id": "12",
         "quest_id": "1"
       }
@@ -138,7 +138,7 @@ Response:
       "attributes": {
         "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
         "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
-        "status": "in progress"
+        "status": "in progress",
         "user_id": "12",
         "quest_id": "1"
       }
@@ -149,7 +149,7 @@ Response:
       "attributes": {
         "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
         "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
-        "status": "in progress"
+        "status": "in progress",
         "user_id": "12",
         "quest_id": "1"
       }
