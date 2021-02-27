@@ -64,7 +64,6 @@ RSpec.describe 'Quests API' do
     describe "happy path" do
       it 'I can return a single quest' do
         quest = Quest.create!(user_id: 2)
-        quest2 = Quest.create!(user_id: 3)
 
         get "/api/v1/users/#{quest.user_id}/quests/#{quest.id}"
 
@@ -83,9 +82,43 @@ RSpec.describe 'Quests API' do
     describe "sad path" do
       it 'returns status 404 if user does not exist' do
         quest = Quest.create!(user_id: 2)
-        quest2 = Quest.create!(user_id: 3)
 
-        get "/api/v1/users/#{quest.id}/quests/12"
+        get "/api/v1/users/#{quest.user_id}/quests/12"
+
+        expect(response.status).to eq(404)
+      end
+    end
+  end
+
+  describe "Quest Update" do
+    describe "happy path" do
+      it 'I can update a quest successfully' do
+	      quest = Quest.create!(user_id: 2)
+        quest_params = {status: "completed"}
+        headers = {'CONTENT_TYPE' => 'application/json'}
+
+        expect(quest.status).to eq("in_progress")
+
+        patch "/api/v1/users/#{quest.user_id}/quests/#{quest.id}", headers: headers, params: JSON.generate(quest_params)
+
+
+	      updated_quest = Quest.last
+
+        expect(response).to be_successful
+        parsed_response = JSON.parse(response.body, symbolize_names: true)
+        expect(response.status).to eq(200)
+        expect(parsed_response).to be_a Hash
+        expect(parsed_response[:data][:attributes][:status]).to eq(updated_quest.status)
+        expect(parsed_response[:data][:attributes][:status]).to eq('completed')
+        expect(parsed_response[:data][:attributes][:user_id]).to eq(updated_quest.user_id)
+      end
+    end
+
+    describe "sad path" do
+      it 'it returns 404 if quest does not exist' do
+        quest = Quest.create!(user_id: 2)
+
+        get "/api/v1/users/#{quest.user_id}/quests/123"
 
         expect(response.status).to eq(404)
       end
