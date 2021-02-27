@@ -9,6 +9,8 @@ Path: `GET https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests`
 
 Params: `:user_id`
 
+Optional Params: `'status'`
+
 Response:
 
 ```json
@@ -183,9 +185,9 @@ Response:
 
 ### Games Create
 
-Path: `POST https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests/:quest_id/games`
+Path: `POST https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/games`
 
-Params: `:user_id, :quest_id`
+Params: `:user_id, 'name'`
 
 Response:
 
@@ -195,10 +197,9 @@ Response:
     "id": "1",
     "type": "game",
     "attributes": {
-      "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-      "user_id": "12",
-      "quest_id": "1"
+      "status": "in_progress",
+      "quest_id": "1",
+      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/8/RNBQKBNR w KQkq - 0 1"
     }
   }
 }
