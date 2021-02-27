@@ -3,7 +3,7 @@ class GameService
 
 		def get_game_data(params)
 			response = conn.get("game") do |req|
-				req.params[:find] = params
+				req.params[:find_player] = params
 			end
 			parse(response)
 		end

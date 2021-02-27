@@ -6,7 +6,7 @@ RSpec.describe 'Games API' do
       it 'creates a game' do
         user_id = 1
         json_response = File.read("spec/fixtures/game.json")
-        stub_request(:get, "https://chess-com-api.herokuapp.com/api/v1/game?find=magnus").
+        stub_request(:get, "https://chess-com-api.herokuapp.com/api/v1/game?find_player=magnus").
           to_return(status: 200, body: json_response)
 
         current_quest = Quest.create!(user_id: user_id)
@@ -33,12 +33,12 @@ RSpec.describe 'Games API' do
       it "microservice doesn't send us any data" do
         user_id = 1
         json_response = File.read("spec/fixtures/missing_fen.json")
-        stub_request(:get, "https://chess-com-api.herokuapp.com/api/v1/game?find=magnus").
+        stub_request(:get, "https://chess-com-api.herokuapp.com/api/v1/game?find_player").
           to_return(status: 404, body: json_response)
 
         current_quest = Quest.create!(user_id: user_id)
 
-        game_params = {name: "magnus", quest_id: current_quest.id}
+        game_params = {find_player: "magnus", quest_id: current_quest.id}
         headers = {'CONTENT_TYPE' => 'application/json'}
         post "/api/v1/users/#{user_id}/games", headers: headers, params: JSON.generate(game_params)
 
