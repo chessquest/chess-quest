@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Games API' do
-  describe 'games create' do  
+RSpec.describe 'Quests API' do
+  describe 'quest create' do
     describe 'happy path' do
       it 'creates a quest' do
         user_id = 2
@@ -33,7 +33,7 @@ RSpec.describe 'Games API' do
     end
   end
 
-  describe 'Gets quests' do
+  describe 'Quests index' do
     describe 'happy path' do
       # TODO: Test for multiple quests, that have been completed
       it 'can return a current_quest' do
@@ -53,6 +53,41 @@ RSpec.describe 'Games API' do
         expect(parsed_response[:data].first[:attributes][:status]).to eq('in_progress')
         expect(parsed_response[:data].first[:attributes][:user_id]).to eq(quest.user_id)
 
+      end
+    end
+    describe "sad path" do
+	    
+    end
+  end
+
+  describe "Quest show" do
+    describe "happy path" do
+      it 'I can return a single quest' do
+        quest = Quest.create!(user_id: 2)
+        quest2 = Quest.create!(user_id: 3)
+
+        get "/api/v1/users/#{quest.user_id}/quests/#{quest.id}"
+
+        expect(response).to be_successful
+
+        parsed_response = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response.status).to eq(200)
+        expect(parsed_response).to be_a Hash
+        expect(parsed_response[:data][:attributes][:status]).to eq(quest.status)
+        expect(parsed_response[:data][:attributes][:status]).to eq('in_progress')
+        expect(parsed_response[:data][:attributes][:user_id]).to eq(quest.user_id)
+      end
+    end
+
+    describe "sad path" do
+      it 'returns status 404 if user does not exist' do
+        quest = Quest.create!(user_id: 2)
+        quest2 = Quest.create!(user_id: 3)
+
+        get "/api/v1/users/#{quest.id}/quests/12"
+
+        expect(response.status).to eq(404)
       end
     end
   end
