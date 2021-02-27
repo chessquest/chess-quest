@@ -1,10 +1,13 @@
 class Fen
 
   attr_reader :board, :to_move, :castling, :en_passant, :half_moves, :full_moves
+  
+  NON_WHITE_BOARD = "rnbqkbnr/pppppppp/8/8/8/8/"
+  FULL_WHITE_BOARD = "PPPPPPPP/RNBQKBNR".split('')
 
-  def initialize(fen_string)
+  def initialize(fen_string, black = false)
     string_fragments = split(fen_string)
-    @board = string_fragments[:board]
+    @board = black ? string_fragments[:board].swapcase : string_fragments[:board]
     @to_move = string_fragments[:to_move]
     @castling = string_fragments[:castling]
     @en_passant = string_fragments[:en_passant]
@@ -12,34 +15,42 @@ class Fen
     @full_moves = string_fragments[:full_moves]
   end
 
+  def fen
+    @board + " " + @to_move + " " + @castling + ' ' + @en_passant + " " + @half_moves + ' ' + @full_moves
+  end
 
-  def to_starting_position_string
-    get_starting_board +  " w KQkq - 0 1"
+  def to_starting_position
+    get_starting_board
+    check_castling
+    @to_move = 'w'
+    @half_moves = '0'
+    @full_moves = '1'
+    self
   end
 
   private
 
+  def check_castling
+    @castling = "QK"[0..(@board.count('R') -3)].reverse + 'kq'
+  end
+
   def get_starting_board
-    default_board_wrapper = "rnbqkbnr/pppppppp/8/8/8/8/"
-    default_white_string = "PPPPPPPP/RNBQKBNR"
-    new_board = ""
-    consecutive_numbers = 0
-    current_board =  @board.reverse.reverse # this is to make your life easier
-    default_white_string.split('').each do |char|
-      result = current_board.slice!(char)
+    current_board =  @board[0..-1] # this is to make your life easier
+    @board = NON_WHITE_BOARD + white_layout(current_board)
+  end
 
-      if result && consecutive_numbers == 0
-        new_board += result
-      elsif result
-        new_board += consecutive_numbers.to_s + result
-        consecutive_numbers = 0
+  def white_layout(current_board)
+    empty_squares = nil
+    FULL_WHITE_BOARD.map do |char|
+      if piece = current_board.slice!(char)
+        placement = empty_squares.to_s + piece
+        empty_squares = nil
+        placement
       else
-        consecutive_numbers += 1
+        empty_squares = empty_squares.to_i + 1
+        ''
       end
-
-    end
-
-    default_board_wrapper + new_board
+    end * '' + empty_squares.to_s
   end
 
   def split(fen_string)
