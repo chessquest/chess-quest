@@ -22,6 +22,13 @@ def stub_get_json(url, filename)
     to_return(status: 200, body: json_response)
 end
 
+VCR.configure do |config|
+  config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  config.hook_into :webmock
+  config.filter_sensitive_data("<TMB_movie_api_key>") { ENV["TMD_api_key"] }
+  config.configure_rspec_metadata!
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
