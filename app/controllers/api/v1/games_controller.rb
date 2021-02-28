@@ -1,4 +1,10 @@
 class Api::V1::GamesController < ApplicationController
+	def show
+		render json: GameSerializer.new(
+			Game.find(params[:id])
+		)
+	end
+	
 	def create
 		# WE assume we will send quest_id, if we send user_id we can update
 		quest = Quest.where('user_id = ? AND status = ?', params[:user_id], 0).first
