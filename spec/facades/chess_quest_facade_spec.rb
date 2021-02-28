@@ -2,16 +2,13 @@ require 'rails_helper'
 
 describe ChessQuestFacade do
 	describe "happy path" do
-		it 'gets a game' do
+		it 'gets a game', :vcr do
 			user_id = 1
-			json_response = File.read("spec/fixtures/game.json")
-			stub_request(:get, "https://chess-com-api.herokuapp.com/api/v1/game?find_player=magnus").
-				to_return(status: 200, body: json_response)
 
-			fen = ChessQuestFacade.get_fen("magnus")
+			fen = ChessQuestFacade.get_fen("magnuscarlsen")
 
 			expect(fen).to be_an String
-			expect(fen).to eq("this_is_the_fen_string")
+			expect(fen).to eq("r4bk1/1qp4P/p2p1Q2/1p1P4/5P2/4rN2/PPP5/2KR3R b - -")
 		end
 	end
 end
