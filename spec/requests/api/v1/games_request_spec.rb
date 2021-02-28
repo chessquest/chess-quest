@@ -8,7 +8,7 @@ RSpec.describe 'Games API' do
 
         current_quest = Quest.create!(user_id: user_id)
 
-				game_params = {find_player: "magnus", quest_id: current_quest.id}
+				game_params = {find_player: "magnus"}
 				headers = {'CONTENT_TYPE' => 'application/json'}
 				post "/api/v1/users/#{user_id}/games", headers: headers, params: JSON.generate(game_params)
 
