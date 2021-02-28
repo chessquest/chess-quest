@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://chess-com-api.herokuapp.com/api/v1/game?find_player=magnus
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '365'
+      X-Content-Type-Options:
+      - nosniff
+      Server:
+      - WEBrick/1.4.2 (Ruby/2.6.6/2020-03-31)
+      Date:
+      - Sun, 28 Feb 2021 00:34:31 GMT
+      Via:
+      - 1.1 vegur
+    body:
+      encoding: UTF-8
+      string: '{"data":{"id":"https://www.chess.com/game/daily/4536331","type":"game","attributes":{"fen":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR
+        w KQkq - 0 1","black":{"rating":876,"result":"timeout","@id":"https://api.chess.com/pub/player/lnas","username":"lnas"},"white":{"rating":1321,"result":"win","@id":"https://api.chess.com/pub/player/magnus","username":"Magnus"}}}}'
+  recorded_at: Sun, 28 Feb 2021 00:34:31 GMT
+recorded_with: VCR 6.0.0
