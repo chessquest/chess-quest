@@ -29,12 +29,12 @@ http_interactions:
       Server:
       - WEBrick/1.4.2 (Ruby/2.6.6/2020-03-31)
       Date:
-      - Sun, 28 Feb 2021 00:34:10 GMT
+      - Sun, 28 Feb 2021 01:47:59 GMT
       Via:
       - 1.1 vegur
     body:
       encoding: UTF-8
       string: '{"data":{"id":"https://www.chess.com/live/game/7583023949","type":"game","attributes":{"fen":"r4bk1/1qp4P/p2p1Q2/1p1P4/5P2/4rN2/PPP5/2KR3R
         b - -","black":{"rating":259,"result":"checkmated","@id":"https://api.chess.com/pub/player/ramyasekar","username":"ramyasekar"},"white":{"rating":2810,"result":"win","@id":"https://api.chess.com/pub/player/magnuscarlsen","username":"MagnusCarlsen"}}}}'
-  recorded_at: Sun, 28 Feb 2021 00:34:10 GMT
+  recorded_at: Sun, 28 Feb 2021 01:47:59 GMT
 recorded_with: VCR 6.0.0
