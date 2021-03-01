@@ -32,11 +32,12 @@ RSpec.describe 'Games API' do
           expect(parsed_response[:data][i][:attributes][:starting_fen]).to eq(game.starting_fen)
         end
       end
+
+      describe "sad path" do
+
+      end
     end
 
-    describe "sad path" do
-
-    end
   end
 
   describe 'games create' do
