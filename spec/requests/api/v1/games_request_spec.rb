@@ -13,7 +13,7 @@ RSpec.describe 'Games API' do
           Game.create(quest: current_quest, status: [:in_progress, :won, :lost].sample, starting_fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
         end
 
-        # creates extra games and verifies through the count that these are not included in the index for the other quest.
+        # creates extra games and verifies through the count that these are not included in the index for the current quest.
         other_quest_games = (0..5).map do |i|
           Game.create(quest: some_other_quest, status: [:in_progress, :won, :lost].sample, starting_fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
         end
@@ -32,12 +32,11 @@ RSpec.describe 'Games API' do
           expect(parsed_response[:data][i][:attributes][:starting_fen]).to eq(game.starting_fen)
         end
       end
-
-      describe "sad path" do
-
-      end
     end
 
+    describe "sad path" do
+
+    end
   end
 
   describe 'games create' do
