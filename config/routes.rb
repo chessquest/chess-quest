@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 	  namespace :v1 do
 			resources :users, only: :show do
 				resources :quests, only: %i[index create show update] do
-          get "/games", to: "games#index"
+          resources :games, only: %i[index update]
         end
 				resources :games, only: %i[index create show]
 			end
