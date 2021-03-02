@@ -1,33 +1,21 @@
 class Api::V1::GamesController < ApplicationController
 	def show
-		render json: GameSerializer.new(
-			Game.find(params[:id])
-		)
+		game = GamesFacade.find_game(params[:id])
+		render json: GameSerializer.new(game)
 	end
 
 	def create
-		# WE assume we will send quest_id, if we send user_id we can update
-		quest = Quest.where('user_id = ? AND status = ?', params[:user_id], 0).first
-		user_id = params[:user_id]
-		fen = ChessQuestFacade.get_fen(params[:find_player])
-		fen_poro = Fen.new(fen)
-		fen_poro.to_starting_position
-		game = Game.create!(starting_fen: fen_poro.fen, quest: quest)
-
+		game = GamesFacade.create_game(params)
 		render json: GameSerializer.new(game), status: :created
 	end
 
 	def index
-		quest = Quest.find(params[:quest_id])
-		games = quest.games
+		games = GamesFacade.quest_games(params)
 		render json: GameSerializer.new(games)
 	end
 
 	def update
-		# could define game_params here as a refactor, but only 2 things will realistically be changing
-		game = Game.find(params[:id])
-		game.current_fen = params[:current_fen]
-		game.status = params[:status]
+		game = GamesFacade.update_game(params)
 		if game.save
 			render json: GameSerializer.new(game)
 		else

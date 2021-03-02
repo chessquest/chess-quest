@@ -70,7 +70,6 @@ RSpec.describe 'Games API' do
     end
   end
 
-
   describe 'games create' do
     describe 'happy path' do
       it 'creates a game', :vcr do
@@ -95,8 +94,33 @@ RSpec.describe 'Games API' do
         expect(parsed_response[:data][:attributes][:starting_fen]).to eq(created_game.current_fen)
       end
     end
+  end
 
     # describe 'sad path' do
     # end
+
+  describe "find game" do 
+    describe "happy path" do 
+      it 'finds a game', :vcr do
+        fen1 = 'r4bk1/1qp4P/p2p1Q2/1p1P4/5P2/4rN2/PPP5/2KR3R b - -'
+        fen2 = 'r4bk2/1qp4P/p2p1Q2/1p1P4/5P2/4rN2/PPP5/2KR3R b - -'
+        user_id = 1
+
+        quest = Quest.create!(user_id: user_id)
+        game1 = Game.create!(quest_id: quest.id, starting_fen: fen1)
+        game2 = Game.create!(quest_id: quest.id, starting_fen: fen2)
+
+        get "/api/v1/users/#{user_id}/games/#{game1.id}"
+
+        expect(response).to be_successful
+        
+        parsed_response = JSON.parse(response.body, symbolize_names: true)
+
+        expect(parsed_response).to be_a Hash
+        expect(parsed_response[:data][:attributes][:status]).to eq(game1.status)
+        expect(parsed_response[:data][:attributes][:status]).to eq('in_progress')
+        expect(parsed_response[:data][:attributes][:starting_fen]).to eq(game1.starting_fen)
+      end
+    end
   end
 end
