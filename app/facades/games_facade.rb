@@ -25,7 +25,7 @@ class GamesFacade
 		def update_game(params)
 			game = Game.find(params[:id])
 			game.current_fen = params[:current_fen]
-			game.status = params[:status]
+			game.status = params[:status].to_i
 			game
 		end
 
