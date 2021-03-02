@@ -11,7 +11,7 @@ RSpec.describe 'Quests API' do
 
         created_quest = Quest.last
         expect(response).to be_successful
-        
+
         parsed_response = JSON.parse(response.body, symbolize_names: true)
 
         expect(response.status).to eq(201)
@@ -28,7 +28,7 @@ RSpec.describe 'Quests API' do
 
     describe 'sad path' do
       it "i dunno <3" do
-        
+
       end
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe 'Quests API' do
 				get "/api/v1/users/#{user_id}/quests", headers: headers, params: (quest_params)
 
         expect(response).to be_successful
-        
+
         parsed_response = JSON.parse(response.body, symbolize_names: true)
 
         expect(response.status).to eq(200)
@@ -104,7 +104,7 @@ RSpec.describe 'Quests API' do
       it 'returns status 404 if user does not exist' do
         quest = Quest.create!(user_id: 2)
 
-        get "/api/v1/users/#{quest.user_id}/quests/12"
+        get "/api/v1/users/#{quest.user_id}/quests/#{Quest.last.id+1}"
 
         expect(response.status).to eq(404)
       end

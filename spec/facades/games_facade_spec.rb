@@ -27,5 +27,14 @@ describe GamesFacade do
 			expect(game.id).to_not eq(game2.id)
 			expect(game.starting_fen).to_not eq(game2.starting_fen)
 		end
+			it 'can create a classical game' do
+				params = Hash.new
+				params[:find_player] = "playclassic"
+				quest = Quest.create!(user_id: 1)
+				params[:user_id] = 1
+				game = GamesFacade.create_game(params)
+
+				expect(game.starting_fen).to eq("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+			end
 	end
 end
