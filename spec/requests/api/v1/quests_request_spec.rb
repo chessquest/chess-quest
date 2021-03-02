@@ -52,11 +52,32 @@ RSpec.describe 'Quests API' do
         expect(parsed_response[:data].first[:attributes][:status]).to eq(quest.status)
         expect(parsed_response[:data].first[:attributes][:status]).to eq('in_progress')
         expect(parsed_response[:data].first[:attributes][:user_id]).to eq(quest.user_id)
+      end
 
+      it 'can return a quest with its games' do
+        user_id = 2
+        quest_params = {status: 'in_progress'}
+        headers = {'CONTENT_TYPE' => 'application/json'}
+        quest = Quest.create!(user_id: user_id)
+        quest.games.create!(status: 'in_progress', starting_fen: 'fen!', current_fen: 'fen!!')
+
+        get "/api/v1/users/#{user_id}/quests", headers: headers, params: (quest_params)
+        parsed_response = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to be_successful
+        expect(parsed_response).to be_a Hash
+
+        expect(parsed_response[:included]).to be_an Array
+        expect(parsed_response[:included][0]).to be_a Hash
+        expect(parsed_response[:included][0][:type]).to eq('game')
+        expect(parsed_response[:included][0][:attributes]).to be_a Hash
+        expect(parsed_response[:included][0][:attributes]).to have_key :status
+        expect(parsed_response[:included][0][:attributes]).to have_key :starting_fen
+        expect(parsed_response[:included][0][:attributes]).to have_key :current_fen
       end
     end
+
     describe "sad path" do
-	    
     end
   end
 
