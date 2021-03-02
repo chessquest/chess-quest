@@ -46,7 +46,7 @@ RSpec.describe 'Games API' do
         current_quest = Quest.new(user_id: user_id)
         game = Game.create(quest: current_quest, status: :in_progress, starting_fen: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
 
-        parameters = {status: :won, current_fen: "rnbqkbnr/pppppppp/8/8/8/8/8/4K3 w kq - 2 39"}
+        parameters = {status: 1, current_fen: "rnbqkbnr/pppppppp/8/8/8/8/8/4K3 w kq - 2 39"}
         patch "/api/v1/users/#{user_id}/quests/#{current_quest.id}/games/#{game.id}", params: parameters
         parsed_response = JSON.parse(response.body, symbolize_names: true)
 
@@ -56,11 +56,11 @@ RSpec.describe 'Games API' do
         expect(response).to be_successful
         expect(response.status).to eq(200)
 
-        expect(updated_game.status).to eq(parameters[:status].to_s)
+        expect(updated_game.status).to eq('won')
         expect(updated_game.current_fen).to eq(parameters[:current_fen])
 
         expect(parsed_response[:data][:id]).to eq(game.id.to_s)
-        expect(parsed_response[:data][:attributes][:status]).to eq(parameters[:status].to_s)
+        expect(parsed_response[:data][:attributes][:status]).to eq('won')
         expect(parsed_response[:data][:attributes][:current_fen]).to eq(parameters[:current_fen])
       end
     end
