@@ -120,6 +120,14 @@ RSpec.describe 'Games API' do
         expect(parsed_response[:data][:attributes][:status]).to eq(game1.status)
         expect(parsed_response[:data][:attributes][:status]).to eq('in_progress')
         expect(parsed_response[:data][:attributes][:starting_fen]).to eq(game1.starting_fen)
+
+        expect(parsed_response[:data][:relationships]).to be_a Hash
+        expect(parsed_response[:data][:relationships]).to have_key :quest
+        expect(parsed_response[:data][:relationships][:quest]).to have_key :data
+        expect(parsed_response[:data][:relationships][:quest][:data]).to have_key :id
+        expect(parsed_response[:data][:relationships][:quest][:data][:id]).to be_a String
+        expect(parsed_response[:data][:relationships][:quest][:data]).to have_key :type
+        expect(parsed_response[:data][:relationships][:quest][:data][:type]).to eq("quest")
       end
     end
   end
