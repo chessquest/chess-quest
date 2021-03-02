@@ -23,9 +23,11 @@ describe "Stats endpoint" do
         expect(response.status).to eq(200)
 
         parsed_response = JSON.parse(response.body, symbolize_names: true)
-        expected_response = {:data=>{:type=>"user_stats", :attributes=>{:quest_id=>quest.id, :streak=>num_games}}}
 
-        expect(parsed_response).to eq(expected_response)
+        expect(parsed_response[:data][:type]).to eq("user_stat")
+        expect(parsed_response[:data][:attributes][:quest_id]).to eq(quest.id)
+        expect(parsed_response[:data][:attributes][:streak]).to eq(num_games)
+
       end
     end
   end
