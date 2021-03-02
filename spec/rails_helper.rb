@@ -25,7 +25,6 @@ end
 VCR.configure do |config|
   config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   config.hook_into :webmock
-  config.filter_sensitive_data("<TMB_movie_api_key>") { ENV["TMD_api_key"] }
   config.configure_rspec_metadata!
 end
 
