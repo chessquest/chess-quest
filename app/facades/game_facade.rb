@@ -1,4 +1,4 @@
-class ChessQuestFacade
+class GameFacade
 	class << self
 		# MAKE BROADER THAN JUST FEN IF WE NEED MORE DATA DOWN THE LINE
 		def get_fen(params)
