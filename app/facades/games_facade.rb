@@ -24,6 +24,7 @@ class GamesFacade
 
 		def update_game(params)
 			next_game(params) if (params[:status] == 1)
+			end_quest(params) if (params[:status] == 2)
 			game = Game.find(params[:id])
 			game.current_fen = params[:current_fen]
 			game.status = params[:status].to_i
@@ -41,7 +42,12 @@ class GamesFacade
 			fen_poro = Fen.new(params[:current_fen])
 			fen_poro.to_starting_position
 			quest = Quest.where(id: params[:quest_id]).where(status: 0).first
-			Game.create!(starting_fen: fen_poro.fen, quest: quest)
+			Game.create(starting_fen: fen_poro.fen, quest: quest)
+		end
+
+		def end_quest(params)
+			quest = Quest.where(id: params[:quest_id]).where(status: 0).first
+			quest.update(status: 1)
 		end
 	end
 end
