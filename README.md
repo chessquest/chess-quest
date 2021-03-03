@@ -1,25 +1,27 @@
 <!-- PROJECT SHIELDS -->
 [![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/chessquest/chess-quest-web">
+    <img src="app/assets/images/pngwing.com.png" alt="Chess Quest Logo" width="80" height="80">
   </a>
 
   <h3 align="center">CHESS QUEST</h3>
 
   <p align="center">
     Thunderdome meets Hearthstone Arena meets Chess...it's CHESS QUEST! Online chess, except you play your next game with just the pieces you last won with. How far will your quest take you?
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <!-- <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a> -->
+    <!-- · -->
+    <a href="https://github.com/chessquest/chessquest-web/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/chessquest/chessquest-web/issues">Request Feature</a>
   </p>
 </p>
 
@@ -56,74 +58,93 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-There are many great README templates available on GitHub, however, I didn't find one that really suit my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+Welcome to Chess Quest! This repository contains our backend Rails app. Uppon recieving a request fron our [frontend Rails API](https://github.com/chessquest/chess-quest-web), this app makes calls to the [Sinatra microservice](https://github.com/chessquest/chess-api) to retrieve data from the Chess.com API.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should element DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have have contributed to expanding this template!
-
-A list of commonly used resources that I find helpful are listed in the acknowledgements.
+This project is deployed on [Heroku here](https://chess-quest.herokuapp.com)
 
 ### Built With
 
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Ruby on Rails](https://rubyonrails.org/)
 * [Sinatra](http://sinatrarb.com/)
-* [chessboard.js](https://chessboardjs.com/)
-* [chess.js](https://github.com/jhlywa/chess.js)
 * [PostgreSQL](https://www.postgresql.org/)
+* [Bootstrap](https://getbootstrap.com/)
+* [JQuery](https://jquery.com/)
+* [RSpec](https://github.com/rspec/rspec-rails)
+* [Travis CI](https://travis-ci.com/)
+* [JavaScript](https://www.javascript.com)
+* [OAuth](https://oauth.net/) - *Google OAuth was chosen for the Chess Quest MVP as a means to keep the barriers to entry low (google is quite common)*
 
 <!-- SYSTEM DESIGN -->
 ## System Design
 
-W.I.P - Screenshots of system diagram
+![Architecture](app/assets/images/architecture.jpg)
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-W.I.P. - Brief summary of how to get up and running
+###### Versions
 
-### Prerequisites
+- Ruby 2.5.3
 
-W.I.P. - Versions, dependencies, etc.
+- Rails 5.2.4.3
+
 
 ### Installation
 
-W.I.P. - Steps to install
+1. Fork repository
+2. Run `bundle install`
+3. Set up the databases `rails db:{create,migrate}` 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-W.I.P. Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. We hope that users provide input to improve their experience and that of others.
+
+###### Making a Contribution
+1. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+2. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+3. Push to the Branch (`git push origin feature/AmazingFeature`)
+4. Open a Pull Request
+
+The Chess.js and Chessboard.js documentation can be referenced for additional [chessboard methods](https://github.com/jhlywa/chess.js/) and [examples of implementation](https://chessboardjs.com/docs), respectively
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
-
-W.I.P. - extension features
+See the [open issues](https://github.com/chessquest/chess-quest-web/issues) for a list of proposed features (and known issues).
 
 <!-- CONTACT -->
 ## Contact
 
-Adam Etzion || [LinkedIn](https://www.linkedin.com/in/adametzion/)
-Ely Hess || [LinkedIn](https://www.linkedin.com/in/ely-hess/)
-Grayson Myers || [LinkedIn](https://www.linkedin.com/in/grayson-myers-285926165/)
-Liam Cusack || [LinkedIn](https://www.linkedin.com/in/liam-cusack-6a9a0a169/)
-Max Ribbans || [LinkedIn](https://www.linkedin.com/in/max-ribbans-46b276156/)
-Mike Foy || [LinkedIn](https://www.linkedin.com/in/michael-foy-707ba7b4/)
-Phil McCarthy || [LinkedIn](https://www.linkedin/in/pjmcc)
+Adam Etzion [GitHub](https://github.com/aetzion1) [LinkedIn](https://www.linkedin.com/in/adametzion/)
+
+Ely Hess [GitHub](https://github.com/elyhess) [LinkedIn](https://www.linkedin.com/in/ely-hess/)
+
+Grayson Myers [GitHub](https://github.com/graymyers) [LinkedIn](https://www.linkedin.com/in/grayson-myers-285926165/)
+
+Liam Cusack [GitHub](https://github.com/liamcusack) [LinkedIn](https://www.linkedin.com/in/liam-cusack-6a9a0a169/)
+
+Max Ribbans [GitHub](https://github.com/ribbansmax) [LinkedIn](https://www.linkedin.com/in/max-ribbans-46b276156/)
+
+Mike Foy [GitHub](https://github.com/foymikek) [LinkedIn](https://www.linkedin.com/in/michael-foy-707ba7b4/)
+
+Phil McCarthy [GitHub](https://github.com/philmccarthy) [LinkedIn](https://www.linkedin/in/pjmcc)
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
+* [chessboard.js](https://chessboardjs.com/)
+* [chess.js](https://github.com/jhlywa/chess.js)
 * [Img Shields](https://shields.io)
-* [Font Awesome](https://fontawesome.com)
+* [MIT Open Source License](https://opensource.org/licenses/MIT)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/chessquest/chess-quest.svg?style=for-the-badge
 [contributors-url]: https://github.com/chessquest/chess-quest/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/chessquest/chess-quest.svg?style=for-the-badge
+[forks-url]: https://github.com/chessquest/chess-quest/network/members
+[stars-shield]: https://img.shields.io/github/stars/chessquest/chess-quest.svg?style=for-the-badge
+[stars-url]: https://github.com/chessquest/chess-quest/stargazers
+[issues-shield]: https://img.shields.io/github/issues/chessquest/chess-quest.svg?style=for-the-badge
+[issues-url]: https://github.com/chessquest/chess-quest/issues
 <!-- [product-screenshot]: images/screenshot.png -->
