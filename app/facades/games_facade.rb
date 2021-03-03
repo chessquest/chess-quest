@@ -23,6 +23,7 @@ class GamesFacade
 		end
 
 		def update_game(params)
+			next_game(params) if (params[:status] == 1)
 			game = Game.find(params[:id])
 			game.current_fen = params[:current_fen]
 			game.status = params[:status].to_i
@@ -32,6 +33,15 @@ class GamesFacade
 		def get_fen(params)
 			chess_game = GameService.get_game_data(params)
 			chess_game[:data][:attributes][:fen]
+		end
+
+		private
+
+		def next_game(params)
+			fen_poro = Fen.new(params[:current_fen])
+			fen_poro.to_starting_position
+			quest = Quest.where(id: params[:quest_id]).where(status: 0).first
+			Game.create!(starting_fen: fen_poro.fen, quest: quest)
 		end
 	end
 end
