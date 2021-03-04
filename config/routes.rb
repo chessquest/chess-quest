@@ -11,12 +11,6 @@ Rails.application.routes.draw do
         end
 				resources :games, only: %i[index create show]
 			end
-
-		  namespace :users do
-			  get '/:id/win_loss', to: 'stats#win_loss'
-			  get '/:id/pieces', to: 'stats#pieces'
-			  get '/:id/total_quests', to: 'stats#total_quests'
-		  end
 	  end
   end
 end
