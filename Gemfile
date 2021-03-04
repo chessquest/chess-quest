@@ -30,6 +30,7 @@ gem 'rack-cors'
 gem 'fast_jsonapi'
 gem 'faraday'
 gem 'rails-erd'
+gem 'api_cache'
 
 group :development, :test do
   gem 'pry'
