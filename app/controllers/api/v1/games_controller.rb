@@ -1,4 +1,3 @@
-
 class Api::V1::GamesController < ApplicationController
 	def show
 		game = GamesFacade.find_game(params[:id])
