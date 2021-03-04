@@ -26,7 +26,7 @@ class GamesFacade
 			next_game(params) if (params[:status] == '1')
 			end_quest(params) if (params[:status] == '2')
 			game = Game.find(params[:id])
-			game.current_fen = params[:current_fen]
+			game.current_fen = params[:current_fen] if params[:current_fen]
 			game.status = params[:status].to_i
 			game
 		end
