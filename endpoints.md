@@ -15,29 +15,42 @@ Response:
 
 ```json
 {
-  "data": [
+  "data":[
     {
-      "id": "1",
-      "type": "quest",
-      "attributes": {
-        "status": "in progress",
-        "user_id": "12"
+      "id":"2",
+      "type":"quest",
+      "attributes":{
+        "status":"in_progress",
+        "user_id":1
+      },
+      "relationships":{
+        "games":{
+          "data":[
+            {
+              "id":"1",
+              "type":"game"
+            }
+          ]
+        }
       }
-    },
+    }
+  ],
+  "included":[
     {
-      "id": "2",
-      "type": "quest",
-      "attributes": {
-        "status": "completed",
-        "user_id": "12"
-      }
-    },
-    {
-      "id": "3",
-      "type": "quest",
-      "attributes": {
-        "status": "completed",
-        "user_id": "12"
+      "id":"1",
+      "type":"game",
+      "attributes":{
+        "status":"won",
+        "starting_fen":"rnbqkbnr/pppppppp/8/8/8/8/PPP5/2BQK3 w kq - 0 1",
+        "current_fen":"8/6Qk/8/P7/3Bp3/7p/8/4K3 b - - 15 35"
+      },
+      "relationships":{
+        "quest":{
+          "data":{
+            "id":"2",
+            "type":"quest"
+          }
+        }
       }
     }
   ]
@@ -55,14 +68,43 @@ Response:
 
 ```json
 {
-  "data": {
-    "id": "1",
-    "type": "quest",
-    "attributes": {
-      "status": "in progress",
-      "user_id": "12"
+  "data":{
+    "id":"1",
+    "type":"quest",
+    "attributes":{
+      "status":"in_progress",
+      "user_id":2
+    },
+    "relationships":{
+      "games":{
+        "data":[
+          {
+            "id":"2",
+            "type":"game"
+          }
+        ]
+      }
     }
-  }
+  },
+  "included":[
+    {
+      "id":"2",
+      "type":"game",
+      "attributes":{
+        "status":"won",
+        "starting_fen":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "current_fen":"8/8/4Q1P1/5k2/2Q5/N1P5/P4PpP/R1B1KBNR b KQ - 3 30"
+      },
+      "relationships":{
+        "quest":{
+          "data":{
+            "id":"1",
+            "type":"quest"
+          }
+        }
+      }
+    }
+  ]
 }
 ```
 
@@ -78,10 +120,16 @@ Response:
 ```json
 {
   "data": {
-    "id": "1",
+    "id": "11",
     "type": "quest",
     "attributes": {
-      "user_id": "12"
+      "status": "in_progress",
+      "user_id": 1
+    },
+    "relationships": {
+      "games": {
+        "data": []
+      }
     }
   }
 }
@@ -91,19 +139,26 @@ Response:
 
 Path: `PATCH https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests/:quest_id`
 
-Params: `:user_id`
+Params: `:user_id, status`
 
 Response:
 
 ```json
 {
   "data": {
-    "id": "1",
+    "id": "11",
     "type": "quest",
     "attributes": {
-      "status": "completed"
+      "status": "completed",
+      "user_id": 1
+    },
+    "relationships": {
+      "games": {
+        "data": []
+      }
     }
-  }
+  },
+  "included": []
 }
 ```
 
@@ -120,66 +175,59 @@ Response:
 
 ```json
 {
-  "data": [
+  "data":[
     {
-      "id": "1",
-      "type": "game",
-      "attributes": {
-        "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-        "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
-        "status": "in progress",
-        "user_id": "12",
-        "quest_id": "1"
+      "id":"2",
+      "type":"game",
+      "attributes":{
+        "status":"won",
+        "starting_fen":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "current_fen":"8/8/4Q1P1/5k2/2Q5/N1P5/P4PpP/R1B1KBNR b KQ - 3 30"
+      },
+      "relationships":{
+        "quest":{
+          "data":{
+            "id":"1",
+            "type":"quest"
+          }
+        }
       }
     },
     {
-      "id": "2",
-      "type": "game",
-      "attributes": {
-        "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-        "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
-        "status": "in progress",
-        "user_id": "12",
-        "quest_id": "1"
+      "id":"3",
+      "type":"game",
+      "attributes":{
+        "status":"lost",
+        "starting_fen":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPP2/RN1QK2R w KQkq - 0 1",
+        "current_fen":"8/4N3/1Q5K/8/P7/3Q4/8/2k5 b - - 24 88"
+      },
+      "relationships":{
+        "quest":{
+          "data":{
+            "id":"1",
+            "type":"quest"
+          }
+        }
       }
     },
     {
-      "id": "3",
-      "type": "game",
-      "attributes": {
-        "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-        "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
-        "status": "in progress",
-        "user_id": "12",
-        "quest_id": "1"
+      "id":"23",
+      "type":"game",
+      "attributes":{
+        "status":"in_progress",
+        "starting_fen":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+        "current_fen":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+      },
+      "relationships":{
+        "quest":{
+          "data":{
+            "id":"1",
+            "type":"quest"
+          }
+        }
       }
     }
   ]
-}
-```
-
-
-### Games Show
-
-Path: `GET https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests/:quest_id/games/:game_id`
-
-Params: `:user_id, :quest_id, :game_id`
-
-Response:
-
-```json
-{
-  "data": {
-    "id": "1",
-    "type": "game",
-    "attributes": {
-      "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/P2PPP3PP/KBNR w KQkq - 0 1",
-      "status": "in progress"
-      "user_id": "12",
-      "quest_id": "1"
-    }
-  }
 }
 ```
 
@@ -187,19 +235,27 @@ Response:
 
 Path: `POST https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/games`
 
-Params: `:user_id, 'name'`
+Params: `:user_id, 'find_player'`
 
 Response:
 
 ```json
 {
   "data": {
-    "id": "1",
+    "id": "24",
     "type": "game",
     "attributes": {
       "status": "in_progress",
-      "quest_id": "1",
-      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/8/RNBQKBNR w KQkq - 0 1"
+      "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    "relationships": {
+      "quest": {
+        "data": {
+          "id": "2",
+          "type": "quest"
+        }
+      }
     }
   }
 }
@@ -209,20 +265,27 @@ Response:
 
 Path: `PATCH https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests/:quest_id/games/:game_id`
 
-Params: `:user_id, :quest_id, :game_id`
+Params: `:user_id, :quest_id, :game_id, :current_fen`
 
 Response:
 
 ```json
 {
   "data": {
-    "id": "1",
+    "id": "24",
     "type": "game",
     "attributes": {
-      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
-      "status": "won"
-      "user_id": "12",
-      "quest_id": "1"
+      "status": "in_progress",
+      "starting_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "current_fen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+    },
+    "relationships": {
+      "quest": {
+        "data": {
+          "id": "2",
+          "type": "quest"
+        }
+      }
     }
   }
 }
@@ -231,9 +294,125 @@ Response:
 <h1><span style="color:red">Stats</span></h1>
 <hr>
 
-### User Stats across all games / quests
+### Return top 3 quests across all users based on win streak
 
-Path: `GET https://chess-quest-api.herokuapp.com/api/v1/stats/users/:user_id`
+Path: `GET https://chess-quest-api.herokuapp.com/api/v1/top_quests`
+
+Params: NA
+
+Response:
+
+```json
+{
+  "data": [
+    {
+      "id": null,
+      "type": "quest_stat",
+      "attributes": {
+        "user_id": 1,
+        "streak": 4,
+        "quest_id": 2
+      },
+      "relationships": {
+        "games": {
+          "data": [
+            {
+              "id": "1",
+              "type": "game"
+            },
+            {
+              "id": "4",
+              "type": "game"
+            },
+            {
+              "id": "16",
+              "type": "game"
+            },
+            {
+              "id": "5",
+              "type": "game"
+            },
+            {
+              "id": "24",
+              "type": "game"
+            },
+            {
+              "id": "6",
+              "type": "game"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": null,
+      "type": "quest_stat",
+      "attributes": {
+        "user_id": 4,
+        "streak": 3,
+        "quest_id": 7
+      },
+      "relationships": {
+        "games": {
+          "data": [
+            {
+              "id": "17",
+              "type": "game"
+            },
+            {
+              "id": "14",
+              "type": "game"
+            },
+            {
+              "id": "15",
+              "type": "game"
+            },
+            {
+              "id": "13",
+              "type": "game"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": null,
+      "type": "quest_stat",
+      "attributes": {
+        "user_id": 2,
+        "streak": 2,
+        "quest_id": 1
+      },
+      "relationships": {
+        "games": {
+          "data": [
+            {
+              "id": "2",
+              "type": "game"
+            },
+            {
+              "id": "3",
+              "type": "game"
+            },
+            {
+              "id": "23",
+              "type": "game"
+            },
+            {
+              "id": "22",
+              "type": "game"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+### Users current quest win streak
+
+Path: `GET https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/win_streak`
 
 Params: `:user_id`
 
@@ -242,54 +421,41 @@ Response:
 ```json
 {
   "data": {
-    "id": "1",
-    "type": "user_stats",
+    "id": null,
+    "type": "user_stat",
     "attributes": {
-      "streak": "6",
-      "win_loss": "6:1",
-      "total_quests": "2"
-    }
-  }
-}
-```
-
-### Stats for a single quest
-
-Path: `GET https://chess-quest-api.herokuapp.com/api/v1/stats/quest/:quest_id
-
-Params: `:quest_id`
-
-Response:
-
-```json
-{
-  "data": {
-    "id": "1",
-    "type": "quest_stats",
-    "attributes": {
-      "quest_id": "2",
-      "streak": "3",
-      "win_loss": "3:1"
-    }
-  }
-}
-```
-
-### User Stats across single game
-
-Path: `GET https://chess-quest-api.herokuapp.com/api/v1/stats/games/:game_id`
-
-Params: `:game_id`
-
-Response:
-
-```json
-{
-  "data": {
-    "id": "1",
-    "type": "game_stats",
-    "attributes": {
-      "win": "true"
+      "streak": 4,
+      "quest_id": 2
+    },
+    "relationships": {
+      "games": {
+        "data": [
+          {
+            "id": "1",
+            "type": "game"
+          },
+          {
+            "id": "4",
+            "type": "game"
+          },
+          {
+            "id": "16",
+            "type": "game"
+          },
+          {
+            "id": "5",
+            "type": "game"
+          },
+          {
+            "id": "24",
+            "type": "game"
+          },
+          {
+            "id": "6",
+            "type": "game"
+          }
+        ]
+      }
     }
   }
 }
