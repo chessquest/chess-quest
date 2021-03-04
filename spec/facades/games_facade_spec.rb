@@ -46,7 +46,7 @@ describe GamesFacade do
 			params[:id] = game1.id
 			params[:quest_id] = quest.id
 			params[:current_fen] = game1.current_fen
-			params[:status] = 1
+			params[:status] = '1'
 
 			GamesFacade.update_game(params)
 
@@ -64,7 +64,7 @@ describe GamesFacade do
 			params[:id] = game1.id
 			params[:quest_id] = quest.id
 			params[:current_fen] = game1.current_fen
-			params[:status] = 2
+			params[:status] = '2'
 
 			GamesFacade.update_game(params)
 

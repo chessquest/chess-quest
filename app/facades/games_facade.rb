@@ -23,8 +23,8 @@ class GamesFacade
 		end
 
 		def update_game(params)
-			next_game(params) if (params[:status] == 1)
-			end_quest(params) if (params[:status] == 2)
+			next_game(params) if (params[:status] == '1')
+			end_quest(params) if (params[:status] == '2')
 			game = Game.find(params[:id])
 			game.current_fen = params[:current_fen]
 			game.status = params[:status].to_i
