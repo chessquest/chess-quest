@@ -1,0 +1,346 @@
+{
+	"info": {
+		"_postman_id": "a683f78b-7e0e-441a-9dc0-de4e3741a7e3",
+		"name": "Chess_Quest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Quests",
+			"item": [
+				{
+					"name": "Quests Index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests",
+							"protocol": "https",
+							"host": [
+								"chess-quest-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user_id",
+								"quests"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Quests Show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests/:quest_id",
+							"protocol": "https",
+							"host": [
+								"chess-quest-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user_id",
+								"quests",
+								":quest_id"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "quest_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Quests Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests",
+							"protocol": "https",
+							"host": [
+								"chess-quest-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user_id",
+								"quests"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Quests Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests/:quest_id?status=completed",
+							"protocol": "https",
+							"host": [
+								"chess-quest-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user_id",
+								"quests",
+								":quest_id"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "completed"
+								}
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "quest_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Games",
+			"item": [
+				{
+					"name": "Games Index",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests/:quest_id/games",
+							"protocol": "https",
+							"host": [
+								"chess-quest-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user_id",
+								"quests",
+								":quest_id",
+								"games"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "quest_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Games Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/games?find_player=playclassic",
+							"protocol": "https",
+							"host": [
+								"chess-quest-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user_id",
+								"games"
+							],
+							"query": [
+								{
+									"key": "find_player",
+									"value": "playclassic"
+								},
+								{
+									"key": "find_player",
+									"value": "alexandrabotez",
+									"disabled": true
+								},
+								{
+									"key": "find_player",
+									"value": "magnuscarlsen",
+									"disabled": true
+								},
+								{
+									"key": "find_player",
+									"value": "imrosen",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Games Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/quests/:quest_id/games/:game_id?current_fen=rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 2",
+							"protocol": "https",
+							"host": [
+								"chess-quest-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user_id",
+								"quests",
+								":quest_id",
+								"games",
+								":game_id"
+							],
+							"query": [
+								{
+									"key": "current_fen",
+									"value": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 2"
+								}
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								},
+								{
+									"key": "quest_id",
+									"value": "1"
+								},
+								{
+									"key": "game_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stats",
+			"item": [
+				{
+					"name": "Top 3 Quests By Win Streak",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://chess-quest-api.herokuapp.com/api/v1/top_quests",
+							"protocol": "https",
+							"host": [
+								"chess-quest-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"top_quests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users Current Quest Win Streak",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://chess-quest-api.herokuapp.com/api/v1/users/:user_id/win_streak",
+							"protocol": "https",
+							"host": [
+								"chess-quest-api",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								":user_id",
+								"win_streak"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
