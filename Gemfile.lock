@@ -44,6 +44,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    api_cache (0.3.0)
     arel (9.0.0)
     bootsnap (1.7.2)
       msgpack (~> 1.0)
@@ -238,6 +239,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  api_cache
   bootsnap (>= 1.1.0)
   capybara
   faraday
