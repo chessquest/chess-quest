@@ -62,6 +62,8 @@ Welcome to Chess Quest! This repository contains our backend Rails app. Uppon re
 
 This project is deployed on [Heroku here](https://chess-quest.herokuapp.com)
 
+[Complete list of endpoints](https://github.com/chessquest/chess-quest/blob/main/endpoints.md)
+
 ### Built With
 
 * [Ruby on Rails](https://rubyonrails.org/)
