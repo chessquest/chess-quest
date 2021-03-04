@@ -1,10 +1,11 @@
+require 'rubygems'
+require 'api_cache'
+
 class GameService
 	class << self
 
 		def get_game_data(params)
-			response = conn.get("game") do |req|
-				req.params[:find_player] = params
-			end
+			response = APICache.get(conn.build_url.to_s + "game?find_player=#{params}")
 			parse(response)
 		end
 
@@ -15,7 +16,7 @@ class GameService
 		end
 
 		def parse(response)
-			JSON.parse(response.body, symbolize_names: true)
+			JSON.parse(response, symbolize_names: true)
 		end
 	end
 end
