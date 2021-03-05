@@ -5,7 +5,7 @@ class GameService
 	class << self
 
 		def get_game_data(params)
-			response = APICache.get(conn.build_url.to_s + "game?find_player=#{params}")
+			response = APICache.get(conn.build_url.to_s + "game?find_player=#{params}", {timeout: 30})
 			parse(response)
 		end
 
